@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+  <title>Mi Tienda</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    .navbar {
+      background-color: #333;
+      color: #fff;
+    }
+    .navbar-brand {
+      font-size: 24px;
+    }
+    .nav-item {
+      margin-right: 20px;
+    }
+    .nav-link {
+      color: #fff;
+    }
+    .nav-link:hover {
+      color: #ccc;
+    }
+    .carrito {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .slide {
+                position: relative;
+                box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
+                margin-top: 26px;
+            }
+
+            .slide-inner {
+                position: relative;
+                overflow: hidden;
+                width: 100%;
+                height: calc( 300px + 3em);
+            }
+
+            .slide-open:checked + .slide-item {
+                position: static;
+                opacity: 100;
+            }
+
+            .slide-item {
+                position: absolute;
+                opacity: 0;
+                -webkit-transition: opacity 0.6s ease-out;
+                transition: opacity 0.6s ease-out;
+            }
+
+            .slide-item img {
+                display: block;
+                height: auto;
+                max-width: 50%;
+            }
+
+            .slide-control {
+                background: rgba(0, 0, 0, 0.28);
+                border-radius: 50%;
+                color: #fff;
+                cursor: pointer;
+                display: none;
+                font-size: 40px;
+                height: 40px;
+                line-height: 35px;
+                position: absolute;
+                top: 50%;
+                -webkit-transform: translate(0, -50%);
+                cursor: pointer;
+                -ms-transform: translate(0, -50%);
+                transform: translate(0, -50%);
+                text-align: center;
+                width: 40px;
+                z-index: 10;
+            }
+
+            .slide-control.prev {
+                left: 2%;
+            }
+
+            .slide-control.next {
+                right: 2%;
+            }
+
+            .slide-control:hover {
+                background: rgba(0, 0, 0, 0.8);
+                color: #aaaaaa;
+            }
+
+            #slide-1:checked ~ .control-1,
+            #slide-2:checked ~ .control-2,
+            #slide-3:checked ~ .control-3,
+            #slide-4:checked ~ .control-4,
+            #slide-5:checked ~ .control-5 {
+                display: block;
+            }
+
+            .slide-indicador {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                position: absolute;
+                bottom: 2%;
+                left: 0;
+                right: 0;
+                text-align: center;
+                z-index: 10;
+            }
+
+            .slide-indicador li {
+                display: inline-block;
+                margin: 0 5px;
+            }
+
+            .slide-circulo {
+                color: #828282;
+                cursor: pointer;
+                display: block;
+                font-size: 35px;
+            }
+
+            .slide-circulo:hover {
+                color: #aaaaaa;
+            }
+
+            #slide-1:checked ~ .control-1 ~ .slide-indicador 
+                 li:nth-child(1) .slide-circulo,
+            #slide-2:checked ~ .control-2 ~ .slide-indicador 
+                  li:nth-child(2) .slide-circulo,
+            #slide-3:checked ~ .control-3 ~ .slide-indicador 
+                  li:nth-child(3) .slide-circulo,
+            #slide-4:checked ~ .control-4 ~ .slide-indicador 
+                  li:nth-child(4) .slide-circulo,
+            #slide-5:checked ~ .control-5 ~ .slide-indicador 
+                  li:nth-child(5) .slide-circulo {
+                color: #428bca;
+            }
+
+            #titulo {
+                width: 100%;
+                position: absolute;
+                padding: 0px;
+                margin: 0px auto;
+                text-align: center;
+                font-size: 27px;
+                color: rgba(255, 255, 255, 1);
+                font-family: 'Open Sans', sans-serif;
+                z-index: 9999;
+                text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33), 
+                     -1px 0px 2px rgba(255, 255, 255, 0);
+            }
+            .texto-derecha {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin: 10px; /* Espaciado opcional desde los bordes */
+            color: #000; /* Cambia el color del texto según lo necesites */
+        }
+  </style>
+</head>
+<body style="background-color: #ADD8E6;">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="#">Mi Tienda</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <form action="Agregar.php" method="post"><button type="submit" formaction="Agregar.php" class="btn btn-success" >Agregar</button></form>
+          </li>
+          <li class="nav-item">
+            <form action="Editar.php" method="post"><button type="submit" formaction="Editar.php" class="btn btn-info">Modificar</button></form>
+          </li>
+          <li class="nav-item">
+            <form action="menueleminar.php" method="post"><button type="submit" formaction="menueleminar.php" class="btn btn-danger">Eliminar</button></form>
+          </li>
+          <li class="nav-item">
+            <form action="Buscarmenu.php" method="post"><button type="submit" formaction="Buscarmenu.php" class="btn btn-primary">Buscar</button></form>
+          </li>
+          <li class="nav-item">
+            <form action="consultageneral.php" method="post"><button type="submit" formaction="consultageneral.php" class="btn btn-secondary">Consulta General</button></form>
+          </li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>
+  <div class="slide">
+    <div class="slide-inner">
+        <input class="slide-open" type="radio" id="slide-1" 
+              name="slide" aria-hidden="true" hidden="" checked="checked">
+        <div class="slide-item">
+            <center><img src="data:image/jpeg;base64,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"></center>
+        </div>
+        <input class="slide-open" type="radio" id="slide-2" 
+              name="slide" aria-hidden="true" hidden="">
+        <div class="slide-item">
+            <center><img src="https://caterpillarhn.com/cdn/shop/products/2610627_12954_Soda-Wash_3aa0f83f-775c-41f8-99d8-6fdeff87cb6e.jpg?v=1678802653"></center>
+        </div>
+        <input class="slide-open" type="radio" id="slide-3" 
+              name="slide" aria-hidden="true" hidden="">
+        <div class="slide-item">
+        <center><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvxG6wpMAeioQ-3yDnAGFImDEQ4i3srf079Q&s"></center>
+        </div>
+        <input class="slide-open" type="radio" id="slide-4" 
+              name="slide" aria-hidden="true" hidden="">
+        <div class="slide-item">
+        <center><img src="https://i.pinimg.com/736x/69/51/d3/6951d3a58296c1e2886972c9f187478c.jpg"></center>
+        </div>
+        <input class="slide-open" type="radio" id="slide-5" 
+              name="slide" aria-hidden="true" hidden="">
+        <div class="slide-item">
+        <center><img src="https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2022/11/23/16691993780157.jpg"></center>
+        </div>
+        <label for="slide-5" class="slide-control prev control-1">‹</label>
+        <label for="slide-4" class="slide-control next control-3">›</label>
+        <label for="slide-3" class="slide-control prev control-4">‹</label>
+        <label for="slide-2" class="slide-control next control-1">›</label>
+        <label for="slide-1" class="slide-control prev control-2">‹</label>
+        <label for="slide-5" class="slide-control next control-4">›</label>
+        <label for="slide-4" class="slide-control prev control-5">‹</label>
+        <label for="slide-3" class="slide-control next control-2">›</label>
+        <label for="slide-2" class="slide-control prev control-3">‹</label>
+        <label for="slide-1" class="slide-control next control-5">›</label>
+        <ol class="slide-indicador">
+            <li>
+                <label for="slide-1" class="slide-circulo">•</label>
+            </li>
+            <li>
+                <label for="slide-2" class="slide-circulo">•</label>
+            </li>
+            <li>
+                <label for="slide-3" class="slide-circulo">•</label>
+            </li>
+            <li>
+                <label for="slide-4" class="slide-circulo">•</label>
+            </li>
+            <li>
+                <label for="slide-5" class="slide-circulo">•</label>
+            </li>
+        </ol>
+    </div>
+</div>
+  <div class="comment-section">
+    <h3>Comentarios</h3>
+    
+    <!-- Imagen que al hacer clic abre la caja de comentarios -->
+    <img src="https://cdn.icon-icons.com/icons2/906/PNG/512/commenting_icon-icons.com_70233.png" alt="Comentar" width="50" height="50" class="comment-icon" onclick="openCommentBox()">
+    
+    <!-- Caja de comentarios, inicialmente oculta -->
+    <div id="comment-box" class="comment-box">
+        <textarea id="comment-input" placeholder="Escribe tu comentario aquí..."></textarea>
+        <button onclick="submitComment()">Enviar</button>
+    </div>
+    
+    <!-- Contenedor de comentarios -->
+    <div id="comments-container">
+        <!-- Aquí se mostrarán los comentarios -->
+    </div>
+</div>
+
+<script>
+    function openCommentBox() {
+        document.getElementById("comment-box").style.display = "block";
+        document.getElementById("comment-input").focus();
+    }
+
+    function submitComment() {
+        const commentInput = document.getElementById("comment-input");
+        const commentText = commentInput.value.trim();
+
+        if (commentText !== "") {
+            const commentsContainer = document.getElementById("comments-container");
+
+            // Crear un nuevo elemento para el comentario
+            const newComment = document.createElement("div");
+            newComment.className = "comment";
+            newComment.textContent = commentText;
+
+            // Agregar el comentario al contenedor de comentarios
+            commentsContainer.appendChild(newComment);
+
+            // Limpiar la caja de comentarios
+            commentInput.value = "";
+            document.getElementById("comment-box").style.display = "none";
+        } else {
+            alert("Por favor, escribe un comentario antes de enviarlo.");
+        }
+    }
+</script>
+<div class="texto-derecha">
+ <p id="visitas"></p>
+
+ <script>
+     // Verificar si el contador de visitas ya existe en localStorage
+     if (localStorage.getItem('visitas')) {
+         // Si existe, incrementarlo en 1
+         let visitas = parseInt(localStorage.getItem('visitas'));
+         visitas += 1;
+         localStorage.setItem('visitas', visitas);
+         document.getElementById('visitas').innerText = `Esta es tu visita número ${visitas} a este sitio.`;
+     } else {
+         // Si no existe, iniciarlo en 1
+         localStorage.setItem('visitas', 1);
+         document.getElementById('visitas').innerText = 'Esta es tu primera visita a este sitio.';
+     }
+ </script>
+ </div>
+</body>
+</html>
